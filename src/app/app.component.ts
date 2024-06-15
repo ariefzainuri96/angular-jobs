@@ -58,7 +58,7 @@ import { twMerge } from 'tailwind-merge';
         <router-outlet></router-outlet>
       </div>
     </div>
-    <!-- <angular-query-devtools initialIsOpen /> -->
+    <angular-query-devtools initialIsOpen />
   `,
 })
 export class AppComponent implements OnInit, OnDestroy {
