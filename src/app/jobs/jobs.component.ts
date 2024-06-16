@@ -1,16 +1,13 @@
 import { Component } from '@angular/core';
+import { JobsSection } from '../components/jobs/jobs-section.component';
 
 @Component({
   selector: 'jobs',
   standalone: true,
-  imports: [],
+  imports: [JobsSection],
   template: `
-    <div class="flex h-full w-full flex-col">
-      <div class="flex-1 bg-slate-300"></div>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
-      <p>Testing</p>
+    <div class="flex flex-col">
+      <jobs-section [isDashboard]="false"></jobs-section>
     </div>
   `,
 })

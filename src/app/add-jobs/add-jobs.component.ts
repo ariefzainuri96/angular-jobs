@@ -5,10 +5,11 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   template: `
-    <div class="h-full w-full overflow-y-auto bg-blue-50">
-      <div class="flex flex-col">
-        <h1>Add Jobs</h1>
-      </div>
+    <div class="flex flex-col">
+      <h1>Add Jobs</h1>
+      <div class="size-96 bg-red-200"></div>
+      <div class="mt-2 size-96 bg-red-200"></div>
+      <div class="mt-2 size-96 bg-red-200"></div>
     </div>
   `,
 })

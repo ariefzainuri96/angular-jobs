@@ -69,6 +69,34 @@
       "description": "-Minimum 2 years of experience as a Full Stack Developer, with expertise in development using Laravel, Vue.js, and SQL.\n-Strong understanding of software design and development principles.\n-Ability to work independently as well as in a team, with excellent communication skills.\n-Proficiency in designing and implementing efficient and optimal database structures.\n-Experience with automated testing and current development methodologies is a plus.\n-Flexible and adaptable to rapid changes in the software development environment.\n-Able to join ASAP and come to offline Coding Test at the office",
       "salary": "$60K - $70K",
       "location": "Yogyakarta"
+    },
+    {
+      "id": "e9641",
+      "type": "Contract",
+      "title": "Freelance Vue Developer#1",
+      "company": {
+        "description": "Company Description TBD",
+        "name": "Arief SWH#Branch1",
+        "contactEmail": "ariefswh_b1@gmail.com",
+        "contactPhone": "085792810600"
+      },
+      "description": "-Minimum 2 years of experience as a Full Stack Developer, with expertise in development using Laravel, Vue.js, and SQL.\n-Strong understanding of software design and development principles.\n-Ability to work independently as well as in a team, with excellent communication skills.\n-Proficiency in designing and implementing efficient and optimal database structures.\n-Experience with automated testing and current development methodologies is a plus.\n-Flexible and adaptable to rapid changes in the software development environment.\n-Able to join ASAP and come to offline Coding Test at the office",
+      "salary": "$60K - $70K",
+      "location": "Yogyakarta"
+    },
+    {
+      "id": "e9642",
+      "type": "Contract",
+      "title": "Freelance Vue Developer#2",
+      "company": {
+        "description": "Company Description TBD",
+        "name": "Arief SWH#Branch1",
+        "contactEmail": "ariefswh_b1@gmail.com",
+        "contactPhone": "085792810600"
+      },
+      "description": "-Minimum 2 years of experience as a Full Stack Developer, with expertise in development using Laravel, Vue.js, and SQL.\n-Strong understanding of software design and development principles.\n-Ability to work independently as well as in a team, with excellent communication skills.\n-Proficiency in designing and implementing efficient and optimal database structures.\n-Experience with automated testing and current development methodologies is a plus.\n-Flexible and adaptable to rapid changes in the software development environment.\n-Able to join ASAP and come to offline Coding Test at the office",
+      "salary": "$60K - $70K",
+      "location": "Yogyakarta"
     }
   ]
 }
