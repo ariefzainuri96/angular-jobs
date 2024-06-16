@@ -8,12 +8,8 @@ import { JobsSection } from '../components/jobs/jobs-section.component';
   standalone: true,
   imports: [DashboardAction, RouterLink, RouterLinkActive, JobsSection],
   template: `
-    <main
-      #scrollContainer
-      (scroll)="onScroll($event)"
-      class="h-full w-full overflow-y-auto"
-    >
-      <div class="flex flex-col pt-[56px]">
+    <main #scrollContainer (scroll)="onScroll($event)" class="main">
+      <div class="main-col">
         <!-- hero -->
         <div
           class="flex flex-col items-center justify-center bg-indigo-700 p-28"
@@ -27,7 +23,7 @@ import { JobsSection } from '../components/jobs/jobs-section.component';
         </div>
 
         <!-- actions -->
-        <div class="mt-4 grid grid-cols-2 gap-4 px-4">
+        <div class="mb-4 mt-4 grid grid-cols-2 gap-4 px-4">
           <dashboard-action
             className="bg-slate-200 flex-1"
             title="Angular Jobs"
@@ -59,7 +55,7 @@ import { JobsSection } from '../components/jobs/jobs-section.component';
         </div>
 
         <!-- jobs -->
-        <jobs-section [isDashboard]="false"></jobs-section>
+        <jobs-section [isDashboard]="true"></jobs-section>
       </div>
     </main>
   `,

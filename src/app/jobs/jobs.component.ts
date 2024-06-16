@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { JobsSection } from '../components/jobs/jobs-section.component';
 
 @Component({
@@ -6,9 +6,30 @@ import { JobsSection } from '../components/jobs/jobs-section.component';
   standalone: true,
   imports: [JobsSection],
   template: `
-    <div class="flex flex-col">
-      <jobs-section [isDashboard]="false"></jobs-section>
-    </div>
+    <main #scrollContainer (scroll)="onScroll($event)" class="main">
+      <div class="main-col">
+        <jobs-section [isDashboard]="false"></jobs-section>
+      </div>
+    </main>
   `,
 })
-export class JobsComponent {}
+export class JobsComponent implements AfterViewInit {
+  @ViewChild('scrollContainer') private scrollContainer!: ElementRef;
+
+  ngAfterViewInit(): void {
+    this.scrollToPosition();
+  }
+
+  scrollToPosition() {
+    const scrollPosition = localStorage.getItem('scroll-/jobs');
+
+    this.scrollContainer.nativeElement.scrollTop = Number(scrollPosition);
+  }
+
+  onScroll(e: Event) {
+    localStorage.setItem(
+      `scroll-/jobs`,
+      `${(e.target as HTMLDivElement).scrollTop}`,
+    );
+  }
+}

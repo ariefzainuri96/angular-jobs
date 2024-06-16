@@ -3,3 +3,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .main {
+    @apply h-full w-full overflow-y-auto;
+  }
+
+  .main-col {
+    @apply flex flex-col pt-[56px];
+  }
+}
