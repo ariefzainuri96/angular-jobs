@@ -8,11 +8,12 @@ import {
 } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { twMerge } from 'tailwind-merge';
+import { ToastComponent } from '../../components/toast/toast.component';
 
 @Component({
   selector: 'base-layout',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, ToastComponent],
   template: `
     <body class="h-screen max-h-screen w-screen overflow-hidden">
       <!-- header -->
@@ -56,6 +57,7 @@ import { twMerge } from 'tailwind-merge';
       </header>
       <!-- content -->
       <router-outlet></router-outlet>
+      <app-toast></app-toast>
     </body>
   `,
 })

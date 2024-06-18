@@ -125,6 +125,20 @@
         "contactEmail": "flaminglassoo1996@gmail.com",
         "contactPhone": "085792810600"
       }
+    },
+    {
+      "id": "05a0",
+      "type": "Part-time",
+      "title": "Angular#3",
+      "description": "desc#3",
+      "salary": "$300k",
+      "location": "Yogyakarta",
+      "company": {
+        "name": "Arief Corp",
+        "description": "company desc#3",
+        "contactEmail": "flaminglassoo1996@gmail.com",
+        "contactPhone": "085792810600"
+      }
     }
   ]
 }

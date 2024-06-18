@@ -7,6 +7,7 @@ import { injectMutation } from '@tanstack/angular-query-experimental';
 import { axiosInstance } from '../../data/axios';
 import { Router } from '@angular/router';
 import { sleep } from '../../utils/utils';
+import { ToastService } from '../services/toast-service';
 
 @Component({
   selector: 'app-add-jobs',
@@ -16,7 +17,9 @@ import { sleep } from '../../utils/utils';
     <main class="main bg-blue-50 px-4">
       <div class="main-col items-center">
         <div class="base-card my-4 w-full md:max-w-[500px]">
-          <span class="mb-2 text-2xl font-semibold">Add Jobs</span>
+          <span (click)="handleToast()" class="mb-2 text-2xl font-semibold"
+            >Add Jobs</span
+          >
           <app-jobs-form
             (onSubmit)="handleOnSubmit($event)"
             [errorMessage]="errorMessage()"
@@ -30,6 +33,7 @@ import { sleep } from '../../utils/utils';
 })
 export class AddJobsComponent {
   router = inject(Router);
+  toast = inject(ToastService);
   errorMessage = signal<ValidationMessage[] | null>(null);
 
   mutation = injectMutation(() => ({
@@ -46,14 +50,22 @@ export class AddJobsComponent {
       this.router.navigateByUrl('/jobs', {
         replaceUrl: true,
       });
-      console.log(data);
+
+      this.toast.show({
+        message: `${data.title} Job added successfully`,
+        id: 'toast-success',
+      });
     },
-    onError(error, variables, context) {
+    onError: (error, variables, context) => {
       console.log(error);
     },
   }));
 
-  handleOnSubmit(job: JobItem | null) {
+  handleToast = () => {
+    this.toast.show({ message: 'New message arrived', id: 'test-toast' });
+  };
+
+  handleOnSubmit = (job: JobItem | null) => {
     this.errorMessage.set(null);
 
     const validation = jobSchema.safeParse(job ?? {});
@@ -76,5 +88,5 @@ export class AddJobsComponent {
     }
 
     this.mutation.mutate(job!);
-  }
+  };
 }
