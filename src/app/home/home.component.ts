@@ -51,6 +51,8 @@ import {
         (onChange)="onSelectChange($event)"
         [items]="selectItems"
         class="mt-4"
+        label="Test label"
+        id="test-label"
       ></custom-select>
       <p class="mt-2">Selected value is {{ valueSelected ?? '-' }}</p>
       <a

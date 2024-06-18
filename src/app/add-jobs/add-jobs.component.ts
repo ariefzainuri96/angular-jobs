@@ -1,16 +1,19 @@
 import { Component } from '@angular/core';
+import { JobsFormComponent } from '../components/jobs-form/jobs-form.component';
 
 @Component({
   selector: 'app-add-jobs',
   standalone: true,
-  imports: [],
+  imports: [JobsFormComponent],
   template: `
-    <div class="flex flex-col">
-      <h1>Add Jobs</h1>
-      <div class="size-96 bg-red-200"></div>
-      <div class="mt-2 size-96 bg-red-200"></div>
-      <div class="mt-2 size-96 bg-red-200"></div>
-    </div>
+    <main class="main bg-blue-50 px-4">
+      <div class="main-col items-center">
+        <div class="base-card my-4 w-full md:max-w-[500px]">
+          <span class="mb-2 text-2xl font-semibold">Add Jobs</span>
+          <app-jobs-form class="w-full"></app-jobs-form>
+        </div>
+      </div>
+    </main>
   `,
 })
 export class AddJobsComponent {}

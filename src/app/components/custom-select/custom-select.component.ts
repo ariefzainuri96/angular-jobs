@@ -1,25 +1,34 @@
 import { Component, input, output } from '@angular/core';
+import { twMerge } from 'tailwind-merge';
 
 @Component({
   selector: 'custom-select',
   standalone: true,
   imports: [],
   template: `
-    <select
-      class="select select-bordered w-full max-w-xs"
-      (change)="this.onChange.emit($event)"
-    >
-      <option disabled selected>{{ placeholder() }}</option>
-      @for (item of items(); track $index) {
-        <option [value]="item.value">{{ item.content }}</option>
-      }
-    </select>
+    <div [class]="merge('flex flex-col items-start', parentClass() ?? '')">
+      <label class="text-sm">{{ label() }}</label>
+      <select
+        class="select select-bordered mt-2 w-full"
+        (change)="this.onChange.emit($event)"
+      >
+        <option disabled selected>{{ placeholder() }}</option>
+        @for (item of items(); track $index) {
+          <option [value]="item.value">{{ item.content }}</option>
+        }
+      </select>
+    </div>
   `,
 })
 export class CustomSelect {
   items = input.required<TSelectItem[]>();
   placeholder = input<string>('Select Something');
+  label = input.required<string>();
   onChange = output<Event>();
+  parentClass = input<string>();
+
+  merge = (style: string, extendedStyle: string) =>
+    twMerge(style, extendedStyle);
 }
 
 export type TSelectItem = {
