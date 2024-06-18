@@ -17,6 +17,9 @@ import { twMerge } from 'tailwind-merge';
           <option [value]="item.value">{{ item.content }}</option>
         }
       </select>
+      @if (errorMessage()) {
+        <p class="mt-1 text-sm text-red-500">{{ errorMessage() }}</p>
+      }
     </div>
   `,
 })
@@ -24,6 +27,7 @@ export class CustomSelect {
   items = input.required<TSelectItem[]>();
   placeholder = input<string>('Select Something');
   label = input.required<string>();
+  errorMessage = input<string>();
   onChange = output<Event>();
   parentClass = input<string>();
 
