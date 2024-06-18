@@ -18,7 +18,7 @@ import { twMerge } from 'tailwind-merge';
       <!-- header -->
       <header class="fixed inset-x-0">
         <nav
-          class="flex h-[56px] w-full flex-row items-center justify-center gap-2 bg-indigo-600 px-4"
+          class="flex h-[56px] w-full flex-row items-center justify-center gap-2 bg-indigo-700 px-4"
         >
           <div class="flex flex-1 flex-row">
             <a

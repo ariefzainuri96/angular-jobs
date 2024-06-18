@@ -25,8 +25,15 @@ import { JobsItem } from '../jobs-item/jobs-item.component';
 
       @if (query.data(); as data) {
         <div class="grid grid-cols-1 gap-3 sm:grid-cols-3">
-          @for (job of isDashboard() ? data.slice(0, 3) : data; track job.id) {
-            <jobs-item [job]="job"></jobs-item>
+          @for (job of data; track job.id; let i = $index) {
+            @if (isDashboard()) {
+              <!-- -1 for index & -3 for get last 3 jobs -->
+              @if (i > data.length - 1 - 3) {
+                <jobs-item [job]="job"></jobs-item>
+              }
+            } @else {
+              <jobs-item [job]="job"></jobs-item>
+            }
           }
         </div>
       }
@@ -42,10 +49,6 @@ export class JobsSection {
       await sleep(1000);
 
       const data = (await axiosInstance.get<JobItem[]>('/jobs')).data;
-
-      if (this.isDashboard()) {
-        return data.reverse();
-      }
 
       return data;
     },

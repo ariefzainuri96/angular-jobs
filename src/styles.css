@@ -12,4 +12,8 @@
   .main-col {
     @apply flex flex-col pt-[56px];
   }
+
+  .base-card {
+    @apply flex flex-col items-start rounded-md bg-white p-4;
+  }
 }

@@ -1,12 +1,19 @@
-import { Component, computed, input, signal } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  computed,
+  input,
+  signal,
+} from '@angular/core';
 import { JobItem } from '../../../data/model/job-item';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { radixSewingPinFilled } from '@ng-icons/radix-icons';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'jobs-item',
   standalone: true,
-  imports: [NgIconComponent],
+  imports: [NgIconComponent, RouterLink, RouterLinkActive],
   providers: [provideIcons({ radixSewingPinFilled })],
   template: `
     <div class="flex flex-col items-start rounded-lg bg-white p-4">
@@ -28,11 +35,12 @@ import { radixSewingPinFilled } from '@ng-icons/radix-icons';
           job()?.location
         }}</span>
       </div>
-      <button
+      <a
+        [routerLink]="'/jobs/' + job()?.id"
         class="btn mt-2 w-full bg-indigo-600 text-white hover:bg-indigo-700"
       >
         Read More
-      </button>
+      </a>
     </div>
   `,
 })
