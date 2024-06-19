@@ -9,12 +9,17 @@ import { twMerge } from 'tailwind-merge';
     <div [class]="merge('flex flex-col items-start', parentClass() ?? '')">
       <label class="text-sm">{{ label() }}</label>
       <select
-        class="select select-bordered mt-2 w-full"
+        class="select select-bordered mt-2 w-full text-[16px]"
         (change)="this.onChange.emit($event)"
       >
         <option disabled selected>{{ placeholder() }}</option>
         @for (item of items(); track $index) {
-          <option [value]="item.value">{{ item.content }}</option>
+          <option
+            [selected]="item.value === defaultValue()"
+            [value]="item.value"
+          >
+            {{ item.content }}
+          </option>
         }
       </select>
       @if (errorMessage()) {
@@ -30,6 +35,7 @@ export class CustomSelect {
   errorMessage = input<string>();
   onChange = output<Event>();
   parentClass = input<string>();
+  defaultValue = input<string>();
 
   merge = (style: string, extendedStyle: string) =>
     twMerge(style, extendedStyle);

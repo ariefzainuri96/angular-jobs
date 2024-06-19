@@ -17,9 +17,7 @@ import { ToastService } from '../services/toast-service';
     <main class="main bg-blue-50 px-4">
       <div class="main-col items-center">
         <div class="base-card my-4 w-full md:max-w-[500px]">
-          <span (click)="handleToast()" class="mb-2 text-2xl font-semibold"
-            >Add Jobs</span
-          >
+          <span class="mb-2 text-2xl font-semibold">Add Jobs</span>
           <app-jobs-form
             (onSubmit)="handleOnSubmit($event)"
             [errorMessage]="errorMessage()"
@@ -60,10 +58,6 @@ export class AddJobsComponent {
       console.log(error);
     },
   }));
-
-  handleToast = () => {
-    this.toast.show({ message: 'New message arrived', id: 'test-toast' });
-  };
 
   handleOnSubmit = (job: JobItem | null) => {
     this.errorMessage.set(null);

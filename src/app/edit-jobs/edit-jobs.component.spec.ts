@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CustomAreaComponent } from './custom-area.component';
+import { EditJobsComponent } from './edit-jobs.component';
 
-describe('CustomAreaComponent', () => {
-  let component: CustomAreaComponent;
-  let fixture: ComponentFixture<CustomAreaComponent>;
+describe('EditJobsComponent', () => {
+  let component: EditJobsComponent;
+  let fixture: ComponentFixture<EditJobsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CustomAreaComponent]
+      imports: [EditJobsComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CustomAreaComponent);
+    fixture = TestBed.createComponent(EditJobsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

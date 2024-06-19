@@ -46,7 +46,7 @@ import { JobsSection } from '../components/jobs/jobs-section.component';
             <a
               action-btn
               class="btn mt-2 border-none bg-indigo-500 text-white hover:bg-indigo-600"
-              routerLink="/add-job"
+              routerLink="/add-jobs"
               routerLinkActive="active"
             >
               Add Job

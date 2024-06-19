@@ -10,8 +10,8 @@ import { JobsItem } from '../jobs-item/jobs-item.component';
   standalone: true,
   imports: [JobsItem],
   template: `
-    <div class="flex w-full flex-col items-center bg-blue-50 px-4 py-6">
-      <p class="mb-4 text-2xl font-bold text-indigo-600">
+    <div class="flex w-full flex-col bg-blue-50 px-4 py-6">
+      <p class="mb-6 self-center text-2xl font-bold text-indigo-600">
         {{ isDashboard() ? 'Recent Jobs' : 'Browse Jobs' }}
       </p>
 
@@ -20,7 +20,7 @@ import { JobsItem } from '../jobs-item/jobs-item.component';
       }
 
       @if (query.isError()) {
-        There is an Error
+        <span>There is an Error {{ query.error() }}</span>
       }
 
       @if (query.data(); as data) {

@@ -1,17 +1,16 @@
-import { Component, input, output, signal } from '@angular/core';
+import { Component, OnInit, input, output, signal } from '@angular/core';
 import {
   CustomSelect,
   TSelectItem,
 } from '../custom-select/custom-select.component';
 import { CustomInput } from '../custom-input/custom-input.component';
 import { JobItem } from '../../../data/model/job-item';
-import { CustomArea } from '../custom-area/custom-area.component';
 import { ValidationMessage } from '../../../data/model/validation-message';
 
 @Component({
   selector: 'app-jobs-form',
   standalone: true,
-  imports: [CustomSelect, CustomInput, CustomArea],
+  imports: [CustomSelect, CustomInput],
   template: `
     <form>
       <custom-select
@@ -19,6 +18,7 @@ import { ValidationMessage } from '../../../data/model/validation-message';
         (onChange)="onSelectChange($event, 'type')"
         label="Job Type"
         [errorMessage]="findError('type')"
+        [defaultValue]="_job()?.type ?? ''"
       ></custom-select>
       <custom-input
         id="title"
@@ -26,20 +26,24 @@ import { ValidationMessage } from '../../../data/model/validation-message';
         placeholder="eg. Angular Developer"
         (onInputChange)="handleChange($event)"
         [errorMessage]="findError('title')"
+        [defaultValue]="_job()?.title"
       ></custom-input>
-      <custom-area
+      <custom-input
+        variant="area"
         id="description"
         label="Description"
         placeholder="Add a description of your job"
         (onInputChange)="handleChange($event)"
         [errorMessage]="findError('description')"
-      ></custom-area>
+        [defaultValue]="_job()?.description"
+      ></custom-input>
       <custom-select
         parentClass="mt-2"
         [items]="jobSalary"
         (onChange)="onSelectChange($event, 'salary')"
         label="Salary"
         [errorMessage]="findError('salary')"
+        [defaultValue]="_job()?.salary"
       ></custom-select>
       <custom-input
         id="location"
@@ -47,6 +51,7 @@ import { ValidationMessage } from '../../../data/model/validation-message';
         placeholder="Add a location of your job"
         (onInputChange)="handleChange($event)"
         [errorMessage]="findError('location')"
+        [defaultValue]="_job()?.location"
       ></custom-input>
       <p class="mt-4 text-lg font-semibold">Company Info</p>
       <custom-input
@@ -55,13 +60,16 @@ import { ValidationMessage } from '../../../data/model/validation-message';
         placeholder="Add a company name of your job"
         (onInputChange)="handleCompanyChange($event)"
         [errorMessage]="findError('name', true)"
+        [defaultValue]="_job()?.company?.name"
       ></custom-input>
       <custom-input
+        variant="area"
         id="description"
         label="Company Description"
         placeholder="Add a company description of your job"
         (onInputChange)="handleCompanyChange($event)"
         [errorMessage]="findError('description', true)"
+        [defaultValue]="_job()?.company?.description"
       ></custom-input>
       <custom-input
         id="contactEmail"
@@ -69,6 +77,7 @@ import { ValidationMessage } from '../../../data/model/validation-message';
         placeholder="Add a company email of your job"
         (onInputChange)="handleCompanyChange($event)"
         [errorMessage]="findError('contactEmail', true)"
+        [defaultValue]="_job()?.company?.contactEmail"
       ></custom-input>
       <custom-input
         id="contactPhone"
@@ -76,6 +85,7 @@ import { ValidationMessage } from '../../../data/model/validation-message';
         placeholder="Add a company phone of your job"
         (onInputChange)="handleCompanyChange($event)"
         [errorMessage]="findError('contactPhone', true)"
+        [defaultValue]="_job()?.company?.contactPhone"
       ></custom-input>
       <button
         [disabled]="submitStatus() === 'pending'"
@@ -89,11 +99,18 @@ import { ValidationMessage } from '../../../data/model/validation-message';
     </form>
   `,
 })
-export class JobsFormComponent {
+export class JobsFormComponent implements OnInit {
+  _job = input<JobItem | null>();
   job = signal<JobItem | null>(null);
   errorMessage = input<ValidationMessage[] | null>(null);
   submitStatus = input<'error' | 'idle' | 'pending' | 'success'>();
   onSubmit = output<JobItem | null>();
+
+  ngOnInit(): void {
+    if (this._job()) {
+      this.job.set(this._job()!);
+    }
+  }
 
   handleSubmit = (event: Event) => {
     event.preventDefault();

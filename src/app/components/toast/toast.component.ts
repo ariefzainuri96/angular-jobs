@@ -6,10 +6,10 @@ import { ToastService } from '../../services/toast-service';
   standalone: true,
   imports: [],
   template: `
-    <div class="toast">
+    <div class="toast flex flex-row items-start">
       @for (toast of toastService.toasts(); track $index) {
         <div
-          class="alert alert-info flex flex-col items-start"
+          class="alert alert-info flex max-w-[90vw] flex-col items-start self-center bg-red-400"
           [class]="toast.className"
         >
           <!-- <p
@@ -18,7 +18,9 @@ import { ToastService } from '../../services/toast-service';
           >
             Close
           </p> -->
-          <span class="text-white">{{ toast.message }}</span>
+          <span class="whitespace-pre-line text-white">{{
+            toast.message
+          }}</span>
         </div>
       }
     </div>
