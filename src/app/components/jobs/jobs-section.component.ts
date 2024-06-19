@@ -4,11 +4,12 @@ import { sleep } from '../../../utils/utils';
 import { axiosInstance } from '../../../data/axios';
 import { JobItem } from '../../../data/model/job-item';
 import { JobsItem } from '../jobs-item/jobs-item.component';
+import { JobsSkeletonComponent } from '../skeletons/jobs-skeleton/jobs-skeleton.component';
 
 @Component({
   selector: 'jobs-section',
   standalone: true,
-  imports: [JobsItem],
+  imports: [JobsItem, JobsSkeletonComponent],
   template: `
     <div class="flex w-full flex-col bg-blue-50 px-4 py-6">
       <p class="mb-6 self-center text-2xl font-bold text-indigo-600">
@@ -16,7 +17,7 @@ import { JobsItem } from '../jobs-item/jobs-item.component';
       </p>
 
       @if (query.isPending()) {
-        Loading...
+        <app-jobs-skeleton></app-jobs-skeleton>
       }
 
       @if (query.isError()) {

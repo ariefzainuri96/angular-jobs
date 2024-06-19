@@ -17,6 +17,7 @@ import { radixSewingPinFilled } from '@ng-icons/radix-icons';
 import { DeleteDialog } from '../components/delete-dialog/delete-dialog.component';
 import { ToastService } from '../services/toast-service';
 import { BackButton } from '../components/back-button/back-button.component';
+import { JobsDetailSkeletonComponent } from '../components/skeletons/jobs-detail-skeleton/jobs-detail-skeleton.component';
 
 @Component({
   selector: 'app-jobs-detail',
@@ -27,22 +28,23 @@ import { BackButton } from '../components/back-button/back-button.component';
     BackButton,
     RouterLink,
     RouterLinkActive,
+    JobsDetailSkeletonComponent,
   ],
   providers: [provideIcons({ radixSewingPinFilled })],
   template: `
     <main class="main bg-blue-50 p-4">
       <div class="main-col">
         <back-button></back-button>
-        @if (query.isPending()) {
-          <p>Loading...</p>
+        @if (job.isPending()) {
+          <app-jobs-detail-skeleton></app-jobs-detail-skeleton>
         }
 
-        @if (query.isError()) {
+        @if (job.isError()) {
           <p>Error...</p>
         }
 
         <!-- parent grid -->
-        @if (query.data(); as data) {
+        @if (job.data(); as data) {
           <div class="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-3">
             <!-- left section -->
             <div class="flex flex-col gap-2 sm:col-span-2">
@@ -176,10 +178,10 @@ export class JobsDetailComponent {
     },
   }));
 
-  query = injectQuery(() => ({
+  job = injectQuery(() => ({
     queryKey: ['/jobs', this.jobsId],
     queryFn: async () => {
-      // await sleep(1000);
+      await sleep(1000);
 
       const data = (await axiosInstance.get<JobItem>(`/jobs/${this.jobsId}`))
         .data;

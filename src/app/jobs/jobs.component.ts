@@ -6,7 +6,7 @@ import { JobsSection } from '../components/jobs/jobs-section.component';
   standalone: true,
   imports: [JobsSection],
   template: `
-    <main #scrollContainer (scroll)="onScroll($event)" class="main">
+    <main #scrollContainer (scroll)="onScroll($event)" class="main bg-blue-50">
       <div class="main-col">
         <jobs-section [isDashboard]="false"></jobs-section>
       </div>

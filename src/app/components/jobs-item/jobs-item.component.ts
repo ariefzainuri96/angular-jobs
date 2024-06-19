@@ -16,7 +16,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   imports: [NgIconComponent, RouterLink, RouterLinkActive],
   providers: [provideIcons({ radixSewingPinFilled })],
   template: `
-    <div class="flex flex-col items-start rounded-lg bg-white p-4">
+    <div class="base-card">
       <p class="text-[16px] text-slate-500">{{ job()?.type }}</p>
       <p class="mt-2 text-lg font-bold">{{ job()?.title }}</p>
       <p class="mt-2 text-[16px]">
