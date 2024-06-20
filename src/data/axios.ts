@@ -1,6 +1,6 @@
 import axios from 'axios';
 
 export const axiosInstance = axios.create({
-  baseURL: 'http://localhost:8002',
+  baseURL: 'https://my-json-server.typicode.com/ariefzainuri96/angular-jobs',
   timeout: 10000,
 });
