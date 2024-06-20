@@ -1,7 +1,10 @@
 {
   "name": "angular-jobs",
   "version": "0.0.0",
+  "homepage": "https://ariefzainuri96.github.io/my-app",
   "scripts": {
+    "predeploy": "ng build",
+    "deploy": "gh-pages -d build",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
@@ -24,6 +27,7 @@
     "@tanstack/angular-query-devtools-experimental": "^5.45.0",
     "@tanstack/angular-query-experimental": "^5.45.0",
     "axios": "^1.7.2",
+    "gh-pages": "^6.1.1",
     "json-server": "^1.0.0-beta.1",
     "rxjs": "~7.8.0",
     "tailwind-merge": "^2.3.0",
