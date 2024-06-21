@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, isDevMode } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AngularQueryDevtools } from '@tanstack/angular-query-devtools-experimental';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,11 @@ import { AngularQueryDevtools } from '@tanstack/angular-query-devtools-experimen
   imports: [RouterOutlet, RouterLink, RouterLinkActive, AngularQueryDevtools],
   template: `
     <router-outlet></router-outlet>
-    <angular-query-devtools initialIsOpen />
+    @if (isDevMode) {
+      <angular-query-devtools></angular-query-devtools>
+    }
   `,
 })
-export class AppComponent {}
+export class AppComponent {
+  isDevMode = !environment.production;
+}
