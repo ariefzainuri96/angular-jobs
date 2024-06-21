@@ -1,14 +1,8 @@
-import {
-  AfterViewInit,
-  Component,
-  computed,
-  input,
-  signal,
-} from '@angular/core';
-import { JobItem } from '../../../data/model/job-item';
+import { Component, computed, input, signal } from '@angular/core';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { radixSewingPinFilled } from '@ng-icons/radix-icons';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { JobItem } from '../../../data/responses/jobs-response';
 
 @Component({
   selector: 'jobs-item',
@@ -36,7 +30,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
         }}</span>
       </div>
       <a
-        [routerLink]="'/jobs/' + job()?.id"
+        [routerLink]="'/jobs/' + job()?._id"
         class="btn mt-2 w-full bg-indigo-600 text-white hover:bg-indigo-700"
       >
         Read More

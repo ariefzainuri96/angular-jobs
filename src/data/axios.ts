@@ -1,6 +1,9 @@
 import axios from 'axios';
 
 export const axiosInstance = axios.create({
-  baseURL: 'http://localhost:8002',
+  baseURL: 'https://backend-frontend-jobs.vercel.app/angular',
   timeout: 10000,
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
