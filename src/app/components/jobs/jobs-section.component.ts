@@ -2,9 +2,9 @@ import { Component, input } from '@angular/core';
 import { injectQuery } from '@tanstack/angular-query-experimental';
 import { sleep } from '../../../utils/utils';
 import { axiosInstance } from '../../../data/axios';
-import { JobItem } from '../../../data/model/job-item';
 import { JobsItem } from '../jobs-item/jobs-item.component';
 import { JobsSkeletonComponent } from '../skeletons/jobs-skeleton/jobs-skeleton.component';
+import { JobsResponse } from '../../../data/responses/jobs-response';
 
 @Component({
   selector: 'jobs-section',
@@ -26,7 +26,7 @@ import { JobsSkeletonComponent } from '../skeletons/jobs-skeleton/jobs-skeleton.
 
       @if (query.data(); as data) {
         <div class="grid grid-cols-1 gap-3 sm:grid-cols-3">
-          @for (job of data; track job.id; let i = $index) {
+          @for (job of data; track job._id; let i = $index) {
             @if (isDashboard()) {
               <!-- -1 for index & -3 for get last 3 jobs -->
               @if (i > data.length - 1 - 3) {
@@ -49,9 +49,9 @@ export class JobsSection {
     queryFn: async () => {
       await sleep(1000);
 
-      const data = (await axiosInstance.get<JobItem[]>('/jobs')).data;
+      const data = (await axiosInstance.get<JobsResponse>('/jobs')).data;
 
-      return data;
+      return data.data;
     },
   }));
 }

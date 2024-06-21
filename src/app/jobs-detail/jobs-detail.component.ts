@@ -11,13 +11,13 @@ import {
 } from '@tanstack/angular-query-experimental';
 import { sleep } from '../../utils/utils';
 import { axiosInstance } from '../../data/axios';
-import { JobItem } from '../../data/model/job-item';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { radixSewingPinFilled } from '@ng-icons/radix-icons';
 import { DeleteDialog } from '../components/delete-dialog/delete-dialog.component';
 import { ToastService } from '../services/toast-service';
 import { BackButton } from '../components/back-button/back-button.component';
 import { JobsDetailSkeletonComponent } from '../components/skeletons/jobs-detail-skeleton/jobs-detail-skeleton.component';
+import { JobsDetailResponse } from '../../data/responses/jobs-detail-response';
 
 @Component({
   selector: 'app-jobs-detail',
@@ -159,7 +159,9 @@ export class JobsDetailComponent {
         document.getElementById(this.deleteModalId) as HTMLDialogElement
       )?.close();
       await sleep(1000);
-      const res = await axiosInstance.delete<JobItem>(`/jobs/${this.jobsId}`);
+      const res = (
+        await axiosInstance.delete<JobsDetailResponse>(`/jobs/${this.jobsId}`)
+      ).data;
       return res.data;
     },
     onSuccess: (data) => {
@@ -183,10 +185,11 @@ export class JobsDetailComponent {
     queryFn: async () => {
       await sleep(1000);
 
-      const data = (await axiosInstance.get<JobItem>(`/jobs/${this.jobsId}`))
-        .data;
+      const data = (
+        await axiosInstance.get<JobsDetailResponse>(`/jobs/${this.jobsId}`)
+      ).data;
 
-      return data;
+      return data.data;
     },
   }));
 }
