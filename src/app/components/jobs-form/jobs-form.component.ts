@@ -4,8 +4,8 @@ import {
   TSelectItem,
 } from '../custom-select/custom-select.component';
 import { CustomInput } from '../custom-input/custom-input.component';
-import { JobItem } from '../../../data/model/job-item';
 import { ValidationMessage } from '../../../data/model/validation-message';
+import { JobItem } from '../../../data/responses/jobs-response';
 
 @Component({
   selector: 'app-jobs-form',

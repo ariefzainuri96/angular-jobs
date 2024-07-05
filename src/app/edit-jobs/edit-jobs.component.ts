@@ -1,6 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
 import { JobsFormComponent } from '../components/jobs-form/jobs-form.component';
-import { JobItem } from '../../data/model/job-item';
 import { ValidationMessage } from '../../data/model/validation-message';
 import {
   injectMutation,
@@ -13,6 +12,8 @@ import { ToastService } from '../services/toast-service';
 import { jobSchema } from '../../data/schema/job-schema';
 import { Location } from '@angular/common';
 import { BackButton } from '../components/back-button/back-button.component';
+import { JobsDetailResponse } from '../../data/responses/jobs-detail-response';
+import { JobItem } from '../../data/responses/jobs-response';
 
 @Component({
   selector: 'app-edit-jobs',
@@ -69,10 +70,11 @@ export class EditJobsComponent {
     queryFn: async () => {
       await sleep(1000);
 
-      const data = (await axiosInstance.get<JobItem>(`/jobs/${this.jobId}`))
-        .data;
+      const data = (
+        await axiosInstance.get<JobsDetailResponse>(`/jobs/${this.jobId}`)
+      ).data;
 
-      return data;
+      return data.data;
     },
   }));
 
@@ -105,10 +107,12 @@ export class EditJobsComponent {
     mutationKey: [['/jobs'], ['/jobs', this.jobId]],
     mutationFn: async (job: JobItem) => {
       await sleep(1000);
-      const response = await axiosInstance.put<JobItem>(
-        `/jobs/${job.id}`,
-        JSON.stringify(job),
-      );
+      const response = (
+        await axiosInstance.put<JobsDetailResponse>(
+          `/jobs/${job._id}`,
+          JSON.stringify(job),
+        )
+      ).data;
       return response.data;
     },
     onSuccess: (data) => {

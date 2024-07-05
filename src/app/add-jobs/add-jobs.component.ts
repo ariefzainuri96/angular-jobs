@@ -1,6 +1,5 @@
 import { Component, EnvironmentInjector, inject, signal } from '@angular/core';
 import { JobsFormComponent } from '../components/jobs-form/jobs-form.component';
-import { JobItem } from '../../data/model/job-item';
 import { ValidationMessage } from '../../data/model/validation-message';
 import { jobSchema } from '../../data/schema/job-schema';
 import { injectMutation } from '@tanstack/angular-query-experimental';
@@ -8,6 +7,8 @@ import { axiosInstance } from '../../data/axios';
 import { Router } from '@angular/router';
 import { sleep } from '../../utils/utils';
 import { ToastService } from '../services/toast-service';
+import { JobsDetailResponse } from '../../data/responses/jobs-detail-response';
+import { JobItem } from '../../data/responses/jobs-response';
 
 @Component({
   selector: 'app-add-jobs',
@@ -38,13 +39,15 @@ export class AddJobsComponent {
     mutationKey: ['/jobs'],
     mutationFn: async (job: JobItem) => {
       await sleep(1000);
-      const response = await axiosInstance.post<JobItem>(
-        '/jobs',
-        JSON.stringify(job),
-      );
-      return response.data;
+      const data = (
+        await axiosInstance.post<JobsDetailResponse>(
+          '/jobs',
+          JSON.stringify(job),
+        )
+      ).data;
+      return data.data;
     },
-    onSuccess: (data, variables, context) => {
+    onSuccess: (data) => {
       this.router.navigateByUrl('/jobs', {
         replaceUrl: true,
       });
@@ -54,7 +57,7 @@ export class AddJobsComponent {
         id: 'toast-success',
       });
     },
-    onError: (error, variables, context) => {
+    onError: (error) => {
       console.log(error);
     },
   }));

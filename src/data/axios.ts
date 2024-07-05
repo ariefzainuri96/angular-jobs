@@ -1,6 +1,10 @@
 import axios from 'axios';
+import { environment } from '../../src/environments/environment';
 
 export const axiosInstance = axios.create({
-  baseURL: 'http://localhost:8002',
+  baseURL: environment.apiUrl,
   timeout: 10000,
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
