@@ -4,7 +4,7 @@
   "homepage": "https://ariefzainuri96.github.io/my-app",
   "scripts": {
     "predeploy": "ng build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d docs",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",

@@ -100,8 +100,8 @@ import { JobItem } from '../../../data/responses/jobs-response';
   `,
 })
 export class JobsFormComponent implements OnInit {
-  _job = input<JobItem | null>();
   job = signal<JobItem | null>(null);
+  _job = input<JobItem | null>();
   errorMessage = input<ValidationMessage[] | null>(null);
   submitStatus = input<'error' | 'idle' | 'pending' | 'success'>();
   onSubmit = output<JobItem | null>();

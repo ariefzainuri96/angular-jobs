@@ -9,7 +9,6 @@ import {
   injectMutation,
   injectQuery,
 } from '@tanstack/angular-query-experimental';
-import { sleep } from '../../utils/utils';
 import { axiosInstance } from '../../data/axios';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { radixSewingPinFilled } from '@ng-icons/radix-icons';
@@ -158,9 +157,9 @@ export class JobsDetailComponent {
       (
         document.getElementById(this.deleteModalId) as HTMLDialogElement
       )?.close();
-      await sleep(1000);
+
       const res = (
-        await axiosInstance.delete<JobsDetailResponse>(`/jobs/${this.jobsId}`)
+        await axiosInstance().delete<JobsDetailResponse>(`/jobs/${this.jobsId}`)
       ).data;
       return res.data;
     },
@@ -183,10 +182,8 @@ export class JobsDetailComponent {
   job = injectQuery(() => ({
     queryKey: ['/jobs', this.jobsId],
     queryFn: async () => {
-      await sleep(1000);
-
       const data = (
-        await axiosInstance.get<JobsDetailResponse>(`/jobs/${this.jobsId}`)
+        await axiosInstance().get<JobsDetailResponse>(`/jobs/${this.jobsId}`)
       ).data;
 
       return data.data;
