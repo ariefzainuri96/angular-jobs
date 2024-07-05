@@ -5,7 +5,6 @@ import { jobSchema } from '../../data/schema/job-schema';
 import { injectMutation } from '@tanstack/angular-query-experimental';
 import { axiosInstance } from '../../data/axios';
 import { Router } from '@angular/router';
-import { sleep } from '../../utils/utils';
 import { ToastService } from '../services/toast-service';
 import { JobsDetailResponse } from '../../data/responses/jobs-detail-response';
 import { JobItem } from '../../data/responses/jobs-response';
@@ -38,9 +37,8 @@ export class AddJobsComponent {
   mutation = injectMutation(() => ({
     mutationKey: ['/jobs'],
     mutationFn: async (job: JobItem) => {
-      await sleep(1000);
       const data = (
-        await axiosInstance.post<JobsDetailResponse>(
+        await axiosInstance().post<JobsDetailResponse>(
           '/jobs',
           JSON.stringify(job),
         )

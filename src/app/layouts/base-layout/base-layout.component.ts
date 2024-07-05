@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   NavigationEnd,
   Router,
@@ -53,11 +53,17 @@ import { ToastComponent } from '../../components/toast/toast.component';
           >
             Add Jobs
           </a>
+          <button
+            (click)="logout()"
+            class="rounded-lg p-2 font-semibold text-white hover:bg-black"
+          >
+            Logout
+          </button>
         </nav>
       </header>
       <!-- content -->
       <router-outlet></router-outlet>
-      <app-toast></app-toast>
+      <!-- <app-toast></app-toast> -->
     </body>
   `,
 })
@@ -81,5 +87,11 @@ export class BaseLayout {
 
   merge(style: string, extendedStyle?: string) {
     return twMerge(style, extendedStyle);
+  }
+
+  logout() {
+    localStorage.removeItem('user');
+
+    this.route.navigateByUrl('login', { replaceUrl: true });
   }
 }

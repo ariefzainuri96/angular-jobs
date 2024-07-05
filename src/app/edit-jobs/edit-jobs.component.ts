@@ -6,7 +6,6 @@ import {
   injectQuery,
 } from '@tanstack/angular-query-experimental';
 import { axiosInstance } from '../../data/axios';
-import { sleep } from '../../utils/utils';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from '../services/toast-service';
 import { jobSchema } from '../../data/schema/job-schema';
@@ -68,10 +67,8 @@ export class EditJobsComponent {
   _job = injectQuery(() => ({
     queryKey: ['/jobs', this.jobId],
     queryFn: async () => {
-      await sleep(1000);
-
       const data = (
-        await axiosInstance.get<JobsDetailResponse>(`/jobs/${this.jobId}`)
+        await axiosInstance().get<JobsDetailResponse>(`/jobs/${this.jobId}`)
       ).data;
 
       return data.data;
@@ -106,9 +103,8 @@ export class EditJobsComponent {
   submitJob = injectMutation(() => ({
     mutationKey: [['/jobs'], ['/jobs', this.jobId]],
     mutationFn: async (job: JobItem) => {
-      await sleep(1000);
       const response = (
-        await axiosInstance.put<JobsDetailResponse>(
+        await axiosInstance().put<JobsDetailResponse>(
           `/jobs/${job._id}`,
           JSON.stringify(job),
         )

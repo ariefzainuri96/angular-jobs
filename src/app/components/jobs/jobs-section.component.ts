@@ -1,6 +1,5 @@
 import { Component, input } from '@angular/core';
 import { injectQuery } from '@tanstack/angular-query-experimental';
-import { sleep } from '../../../utils/utils';
 import { axiosInstance } from '../../../data/axios';
 import { JobsItem } from '../jobs-item/jobs-item.component';
 import { JobsSkeletonComponent } from '../skeletons/jobs-skeleton/jobs-skeleton.component';
@@ -47,9 +46,7 @@ export class JobsSection {
   query = injectQuery(() => ({
     queryKey: [this.isDashboard() ? '/recent-jobs' : '/jobs'],
     queryFn: async () => {
-      await sleep(1000);
-
-      const data = (await axiosInstance.get<JobsResponse>('/jobs')).data;
+      const data = (await axiosInstance().get<JobsResponse>('/jobs')).data;
 
       return data.data;
     },
