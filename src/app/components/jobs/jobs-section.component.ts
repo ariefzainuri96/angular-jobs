@@ -12,7 +12,7 @@ import { JobsResponse } from '../../../data/responses/jobs-response';
   template: `
     <div class="flex w-full flex-col bg-blue-50 px-4 py-6">
       <p class="mb-6 self-center text-2xl font-bold text-indigo-600">
-        {{ isDashboard() ? 'Recent Jobs' : 'Browse Jobs' }}
+        {{ isDashboard() ? 'Latest Jobs' : 'Browse Jobs' }}
       </p>
 
       @if (query.isPending()) {

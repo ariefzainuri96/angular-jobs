@@ -5,7 +5,7 @@ type TToast = {
   message: string;
   id: string;
   className?: string;
-  duration?: number; // in ms
+  duration?: number;
 };
 
 @Injectable({

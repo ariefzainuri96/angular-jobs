@@ -63,7 +63,6 @@ import { ToastComponent } from '../../components/toast/toast.component';
       </header>
       <!-- content -->
       <router-outlet></router-outlet>
-      <!-- <app-toast></app-toast> -->
     </body>
   `,
 })
